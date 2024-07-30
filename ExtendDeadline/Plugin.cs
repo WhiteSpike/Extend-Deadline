@@ -16,6 +16,7 @@ namespace ExtendDeadline
     [BepInPlugin(Metadata.GUID,Metadata.NAME,Metadata.VERSION)]
     [BepInDependency("com.sigurd.csync")]
     [BepInDependency("evaisa.lethallib")]
+    [BepInDependency("WhiteSpike.InteractiveTerminalAPI")]
     public class Plugin : BaseUnityPlugin
     {
         internal static readonly Harmony harmony = new(Metadata.GUID);
