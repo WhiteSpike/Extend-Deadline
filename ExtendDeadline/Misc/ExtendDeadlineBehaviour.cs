@@ -16,7 +16,7 @@ namespace ExtendDeadline.Misc
         {
             SetInstance(this);
             DontDestroyOnLoad(gameObject);
-            if (ES3.KeyExists("daysExtended")) daysExtended = ES3.Load<int>("daysExtended");
+            if (ES3.KeyExists("daysExtended", GameNetworkManager.Instance.currentSaveFileName)) daysExtended = ES3.Load<int>("daysExtended", GameNetworkManager.Instance.currentSaveFileName);
             else daysExtended = 0;
         }
 
@@ -30,7 +30,7 @@ namespace ExtendDeadline.Misc
             SetDaysExtended(GetDaysExtended() + days);
             if (IsHost || IsServer)
             {
-                ES3.Save("daysExtended", daysExtended);
+                ES3.Save("daysExtended", daysExtended, GameNetworkManager.Instance.currentSaveFileName);
             }
             Plugin.mls.LogDebug($"Previous time: {before}, new time: {TimeOfDay.Instance.timeUntilDeadline}");
         }

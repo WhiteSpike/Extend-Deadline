@@ -5,8 +5,8 @@ namespace ExtendDeadline.Misc
 {
     internal static class CommandParser
     {
-        const string EXTEND_HELP_COMMAND = ">EXTEND DEADLINE <DAYS>\n" +
-            "Extends the deadline by specified amount. Consumes {0} for each day extended and the price is increased by {1} per every quota fullfilled.\n\n";
+        const string EXTEND_HELP_COMMAND = ">EXTEND DEADLINE\n" +
+            "Allows extending the deadline by selecting the amount. Consumes {0} for each day extended and the price is increased by {1} per every quota fullfilled and by {2} per each day extension.\n\n";
         private static TerminalNode DisplayTerminalMessage(string message, bool clearPreviousText = true)
         {
             TerminalNode node = ScriptableObject.CreateInstance<TerminalNode>();
@@ -37,7 +37,7 @@ namespace ExtendDeadline.Misc
         private static TerminalNode ExecuteExtendDeadlineCommand(string thirdWord, ref Terminal terminal, ref TerminalNode outputNode)
         {
             if (!string.IsNullOrEmpty(thirdWord) && thirdWord == "help")
-                return DisplayTerminalMessage(string.Format(EXTEND_HELP_COMMAND, Plugin.Config.EXTEND_DEADLINE_PRICE.Value, Plugin.Config.EXTEND_DEADLINE_ADDITIONAL_PRICE_PER_QUOTA.Value));
+                return DisplayTerminalMessage(string.Format(EXTEND_HELP_COMMAND, Plugin.Config.EXTEND_DEADLINE_PRICE.Value, Plugin.Config.EXTEND_DEADLINE_ADDITIONAL_PRICE_PER_QUOTA.Value, Plugin.Config.EXTEND_DEADLINE_ADDITIONAL_PRICE_PER_DAY.Value));
 
             return outputNode;
         }
