@@ -1,0 +1,10 @@
+
+/.vs
+/InteractiveTerminalAPI/bin
+InteractiveTerminalAPI/InteractiveTerminalAPI.csproj.user
+/InteractiveTerminalAPI/obj
+/InteractiveTerminalAPI/Properties
+/ScrapInsurance/bin
+/ScrapInsurance/obj
+/ExtendDeadline/bin
+/ExtendDeadline/obj
