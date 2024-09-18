@@ -51,7 +51,7 @@ namespace ExtendDeadline.Misc.UI.Application
             else
             {
                 ExtendDeadlineBehaviour.Instance.ExtendDeadlineServerRpc(days);
-                terminal.SyncGroupCreditsServerRpc(terminal.groupCredits - totalCost, terminal.numberOfItemsInDropship);
+                terminal.BuyItemsServerRpc([], terminal.groupCredits - totalCost, terminal.numberOfItemsInDropship);
             }
             backAction();
         }

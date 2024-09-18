@@ -28,10 +28,6 @@ namespace ExtendDeadline.Misc
             TimeOfDay.Instance.UpdateProfitQuotaCurrentTime();
             TimeOfDay.Instance.SyncTimeClientRpc(TimeOfDay.Instance.globalTime, (int)TimeOfDay.Instance.timeUntilDeadline);
             SetDaysExtended(GetDaysExtended() + days);
-            if (IsHost || IsServer)
-            {
-                ES3.Save("daysExtended", daysExtended, GameNetworkManager.Instance.currentSaveFileName);
-            }
             Plugin.mls.LogDebug($"Previous time: {before}, new time: {TimeOfDay.Instance.timeUntilDeadline}");
         }
 
@@ -66,6 +62,11 @@ namespace ExtendDeadline.Misc
         public static void SetDaysExtended(int daysExtended)
         {
             Instance.daysExtended = daysExtended;
+            if (Instance.IsHost || Instance.IsServer)
+            {
+                ES3.Save("daysExtended", daysExtended, GameNetworkManager.Instance.currentSaveFileName);
+                Plugin.mls.LogInfo($"Saved {daysExtended} days extended into the current save file");
+            }
         }
     }
 }
