@@ -7,13 +7,13 @@ using System;
 
 namespace ExtendDeadline.Misc.UI.Application
 {
-    internal class ExtendDeadlineApplication : InteractiveCounterApplication<CursorCounterMenu, CursorCounterElement>
+    internal class ExtendDeadlineApplication : InteractiveCounterApplication<CursorOutputElement<string>>
     {
         public override void Initialization()
         {
             CursorOutputElement<string>[] cursorCounterElements = new CursorOutputElement<string>[1];
             Func<int, string>[] array = new Func<int, string>[1];
-            CursorCounterMenu cursorCounterMenu = CursorCounterMenu.Create(0, '>', cursorCounterElements);
+			CursorMenu<CursorOutputElement<string>> cursorCounterMenu = CursorMenu<CursorOutputElement<string>>.Create(0, '>', cursorCounterElements);
             IScreen screen = BoxedOutputScreen<string, string>.Create(ExtendDeadlineBehaviour.COMMAND_NAME, [cursorCounterMenu], () => cursorCounterElements[0].ApplyFunction(), (string x) => x);
             for (int i = 0; i < cursorCounterElements.Length; i++)
             {
@@ -57,12 +57,12 @@ namespace ExtendDeadline.Misc.UI.Application
         }
         protected void Confirm(string title, string description, Action confirmAction, Action declineAction, string additionalMessage = "")
         {
-            CursorCounterElement[] elements =
+			CursorOutputElement<string>[] elements =
             [
-            CursorCounterElement.Create("Confirm", "", confirmAction, showCounter: false),
-            CursorCounterElement.Create("Abort", "", declineAction, showCounter: false)
+			CursorOutputElement<string>.Create("Confirm", "", confirmAction, showCounter: false),
+			CursorOutputElement<string>.Create("Abort", "", declineAction, showCounter: false)
             ];
-            CursorCounterMenu cursorMenu = CursorCounterMenu.Create(0, '>', elements);
+			CursorMenu<CursorOutputElement<string>> cursorMenu = CursorMenu<CursorOutputElement<string>>.Create(0, '>', elements);
             ITextElement[] elements2 =
             [
             TextElement.Create(description),
@@ -75,8 +75,8 @@ namespace ExtendDeadline.Misc.UI.Application
         }
         protected void ErrorMessage(string title, string description, Action backAction, string error)
         {
-            CursorCounterElement[] elements = [CursorCounterElement.Create("Back", "", backAction, showCounter: false)];
-            CursorCounterMenu cursorMenu = CursorCounterMenu.Create(0, '>', elements);
+			CursorOutputElement<string>[] elements = [CursorOutputElement<string>.Create("Back", "", backAction, showCounter: false)];
+			CursorMenu<CursorOutputElement<string>> cursorMenu = CursorMenu<CursorOutputElement<string>>.Create(0, '>', elements);
             ITextElement[] elements2 =
             [
             TextElement.Create(description),
