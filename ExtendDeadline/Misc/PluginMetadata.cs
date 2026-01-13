@@ -4,6 +4,6 @@
     {
         public const string GUID = "com.github.WhiteSpike.ExtendDeadline";
         public const string NAME = "Extend Deadline";
-        public const string VERSION = "1.0.0";
+        public const string VERSION = "1.0.4";
     }
 }
